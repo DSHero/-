@@ -1,0 +1,96 @@
+*{
+	margin: 0;
+	padding: 0;
+	/* box-sizing:属性允许你以某种方式定义某些元素，以适应指定区域。 */
+	/* border-box:指定宽度和高度（最小/最大属性）确定元素边框。也就是说，对元素指定宽度和高度包括了 padding 和 border 。通过从已设定的宽度和高度分别减去边框和内边距才能得到内容的宽度和高度。 */
+	box-sizing: border-box;
+}
+
+body{
+	width: 100%;
+	height: 100vh;
+	background-color: #222;
+	/*实现子元素的垂直水平居中，采用Flex布局*/
+	display: flex;
+	align-items: center;
+	/* justify-content:用于设置或检索弹性盒子元素在主轴（横轴）方向上的对齐方式。 */
+	justify-content: center;
+}
+
+.container{
+	display: flex;
+}
+
+.container .point{
+	width: 2em;
+	height: 2em;
+	border-radius: 50%;/*实现圆形*/
+	background-color: #fff;
+	margin: 1em;
+	user-select: none;
+	position: relative;
+}
+
+.container .point::before{
+	position: absolute;
+	/* content 属性与 :before 及 :after 伪元素配合使用，来插入生成内容。 */
+	content:'';
+	width: 100%;
+	height: 100%;
+	/*从父元素继承背景颜色*/
+	background-color: inherit;
+	/*从父元素继承圆角*/
+	border-radius: inherit;
+	/*对before元素定义动画，完成时间2s，采用ease-out过度，重复循环*/
+	animation: wave 2.2s ease-out infinite;
+}
+
+/* 使用@keyframes规则，你可以创建动画。
+创建动画是通过逐步改变从一个CSS样式设定到另一个。
+在动画过程中，您可以更改CSS样式的设定多次。
+指定的变化时发生时使用％，或关键字"from"和"to"，这是和0％到100％相同。
+0％是开头动画，100％是当动画完成。 */
+@keyframes wave{
+	50%,
+	70%{
+		transform: scale(2.5);
+	}
+	80%,
+	100%{
+		opacity: 0;
+	}
+}
+
+.container .point:nth-child(1){
+	background-color: #7ef9ff;
+}
+.container .point:nth-child(2){
+	background-color: #89cff0;
+}
+.container .point:nth-child(3){
+	background-color: #4682b4;
+}
+.container .point:nth-child(4){
+	background-color: #0f52ba;
+}
+.container .point:nth-child(5){
+	background-color: #000080;
+}
+
+
+/*对动画增加延迟*/
+.container .point:nth-child(1)::before{
+	animation-delay: 0s;
+}
+.container .point:nth-child(2)::before{
+	animation-delay: 0.2s;
+}
+.container .point:nth-child(3)::before{
+	animation-delay: 0.4s;
+}
+.container .point:nth-child(4)::before{
+	animation-delay: 0.6s;
+}
+.container .point:nth-child(5)::before{
+	animation-delay: 0.8s;
+}
